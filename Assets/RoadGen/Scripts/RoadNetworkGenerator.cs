@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using RoadGen.Mischel.Collections;
-using RoadGen.Eppy;
+
 
 namespace RoadGen
 {
@@ -234,8 +234,7 @@ namespace RoadGen
             }
             return newSegments;
         }
-
-        static void IntersectSegments(Vector2 intersection, Segment segment0, Segment segment1, List<Segment> segments, Quadtree quadtree)
+       static void IntersectSegments(Vector2 intersection, Segment segment0, Segment segment1, List<Segment> segments, Quadtree quadtree)
         {
             bool startIsBackwards = segment0.StartIsBackwards();
             Segment splitPart = new Segment(segment0);
