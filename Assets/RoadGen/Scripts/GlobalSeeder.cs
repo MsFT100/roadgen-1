@@ -8,18 +8,18 @@ public class GlobalSeeder : MonoBehaviour
 
     static int GetSecondsSinceEpoch()
     {
-        var seconds = DateTime.Now.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
-        if (seconds > (double)int.MaxValue)
-            throw new Exception();
-        return (int)seconds;
+        var epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        var currentTime = DateTime.UtcNow;
+        var seconds = (int)(currentTime - epochStart).TotalSeconds;
+        return seconds;
     }
 
     void Start()
     {
         seed = (useTimeAsSeed) ? GetSecondsSinceEpoch() : seed;
-        UnityEngine.Random.seed = seed;
+        UnityEngine.Random.InitState(seed);
         RoadGen.Perlin.Seed(seed);
         Debug.Log("Seed: " + seed);
     }
-
 }
+
