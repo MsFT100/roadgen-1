@@ -18,10 +18,9 @@ public class BitOpsHelperPerformanceTests
         int[] selection0 = new int[31];
         int[] selection1 = new int[31];
 
-
         // ---
 
-        UnityEngine.Random.seed = 0;
+        UnityEngine.Random.InitState(0);
         int c = 0;
         stopWatch.Start();
         while (bitmask != 0)
@@ -29,8 +28,9 @@ public class BitOpsHelperPerformanceTests
         stopWatch.Stop();
         var t0 = stopWatch.ElapsedTicks;
 
-        UnityEngine.Random.seed = 0;
+        UnityEngine.Random.InitState(0);
         c = 0;
+        stopWatch.Reset();
         stopWatch.Start();
         while (hashSet.Count > 0)
         {
@@ -59,5 +59,4 @@ public class BitOpsHelperPerformanceTests
         Assert.AreIdenticalSets(selection0, selection1, (a, b) => a == b);
         Assert.IsTrue(t0 < t1);
     }
-
 }
